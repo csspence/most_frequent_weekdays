@@ -27,6 +27,7 @@ const leapYear = (year) => {
 const mostFrequentDays = (year) => {
   let date = new Date('January 1, ' + year);
   let today = date.getDay();
+  console.log('here is today: ' + today);
   let numDays = 365;
   let days = {
     monday : {day: 'Monday', total: 0},
@@ -48,11 +49,11 @@ const mostFrequentDays = (year) => {
   }
   //Establishes the number of times a day occurs in the given year
   for(let i = today; i < numDays - 1; i++) {
-    let now = dayArray[i];
+    let now = dayArray[today];
     days[now].total++;
     count++;
-    if(i === 6) {
-      i = 0;
+    if(today === 6) {
+      today = 0;
     }
     if(count === numDays) {
       break;
@@ -66,11 +67,10 @@ const mostFrequentDays = (year) => {
     }
   }
 
-  //Puts together the array you're supposed to return
+  //Constructs the return array
   for(let j = 1; j < dayArray.length; j++) {
     if(days[dayArray[j]].total === mostDays) {
       finalArray.push(days[dayArray[j]].day);
-      break;
     }
     if(j === 6 && days[dayArray[0]].total === mostDays) {
       finalArray.push(days[dayArray[0]].day);
@@ -79,3 +79,5 @@ const mostFrequentDays = (year) => {
 
   return finalArray;
 }
+
+console.log('this should be wednesday: ' + mostFrequentDays(2020));
