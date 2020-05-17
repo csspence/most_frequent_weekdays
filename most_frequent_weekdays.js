@@ -20,7 +20,41 @@ mostFrequentDays(2427) => ['Friday']
 mostFrequentDays(2185) => ['Saturday']
 mostFrequentDays(2860) => ['Thursday', 'Friday']
 */
+const leapYear = (year) => {
+  return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+};
 
-function mostFrequentDays(year){
-  //your code here
+const mostFrequentDays = (year) => {
+  let date = new Date('January 1, ' + year);
+  console.log('here is date: ' + date);
+  let today = date.getDay();
+  console.log('here is today: ' + today);
+  let numDays = 365;
+  let days = {
+    monday : {day: 'Monday', total: 0},
+    tuesday : {day: 'Tuesday', total: 0},
+    wednesday : {day: 'Wednesday', total: 0},
+    thursday : {day: 'Thursday', total: 0},
+    friday : {day: 'Friday', total: 0},
+    saturday : {day: 'Saturday', total: 0},
+    sunday : {day: 'Sunday', total: 0},
+  };
+  let dayArray = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  let count = 0;
+  if(leapYear(year) === true) {
+    numDays = 366;
+  }
+  for(let i = today; i < numDays - 1; i++) {
+    let now = dayArray[i];
+    days[now].total++;
+    count++;
+    if(i === 6) {
+      i = 0;
+    }
+    if(count === numDays) {
+      break;
+    }
+  }
+
+
 }
